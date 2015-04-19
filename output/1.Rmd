@@ -1,0 +1,35 @@
+---
+title: "Exercise"
+author: "Audra Andrew"
+date: "April 19, 2015"
+output: html_document
+---
+
+
+
+```{r}
+data <- read.table("combined_gapMinder.tsv", sep = "\t", header = TRUE)
+
+library(dplyr)
+library(tidyr)
+
+data %>%
+  filter(country == "Italy") %>%
+  select(country, year, gdpPercap) -> italy
+
+
+plot(x=italy$year, y=italy$gdpPercap, xlab="year", ylab="GDP", main = "Italy GDP")
+
+data %>%
+  filter(country == "United States") %>%
+  select(country, year, gdpPercap) -> us
+
+plot(x=us$year, y=us$gdpPercap, xlab="year", ylab="GDP", main = "US GDP")
+
+data %>%
+  filter(country == "China") %>%
+  select(country, year, gdpPercap) -> china
+
+plot(x=china$year, y=china$gdpPercap, xlab="year", ylab="GDP", main="China GDP")
+```
+
