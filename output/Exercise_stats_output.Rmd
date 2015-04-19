@@ -1,0 +1,21 @@
+---
+title: "Exercise_stats"
+author: "Audra Andrew"
+date: "April 19, 2015"
+output: html_document
+---
+
+```{r}
+data <- read.table("combined_gapMinder.tsv", sep = "\t", header = TRUE)
+
+library(dplyr)
+library(tidyr)
+```
+###Life expectancy stats
+People in Africa appear to have the lowest life expectancy.
+```{r}
+data %>% 
+  select(continent, lifeExp) %>%
+  group_by(continent) %>%
+  summarize(mean=mean(lifeExp), min=min(lifeExp), max=max(lifeExp))
+```
